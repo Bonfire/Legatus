@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://bootswatch.com/4/darkly/bootstrap.css" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>Legatus - SotW</title>
+
+    <script>
+        const generateMessage = function () {
+            const generatedMessage = document.getElementById("generatedMessage");
+            generatedMessage.value = '';
+
+            const splitStart = (document.getElementById("startDateInput").value).split("-");
+            const startDate = splitStart[1] + "/" + splitStart[2];
+            const splitEnd = (document.getElementById("endDateInput").value).split("-");
+            const endDate = splitEnd[1] + "/" + splitEnd[2];
+            const startTime = document.getElementById("startTimeInput").value;
+            const endTime = document.getElementById("endTimeInput").value;
+
+            generatedMessage.enabled = true;
+            generatedMessage.value += "Please vote for your favorite skills for the week of ";
+            generatedMessage.value += startDate + " - " + endDate + " skilling event! ";
+            generatedMessage.value += "The event will start on " + startDate + " at " + startTime + " EST ";
+            generatedMessage.value += "and end at " + endDate + " at " + endTime + " EST. ";
+            generatedMessage.value += "To vote for a skill, simply use one of the reactions below that correspond to " +
+                "that particular choice. **You're welcome to vote for more than one skill.** Whichever skill is most voted " +
+                "for by event start time will become the Skill of the Week. Those who earn the most XP in the selected " +
+                "skill by the end of the event will earn 1.5m for 3rd place, 2.5m for 2nd place, and 4m for 1st place. " +
+                "Voting will close when the event starts.";
+
+            generatedMessage.value += "\n```\n";
+            const skillSplit = document.getElementById("inputSkills").value.trim().split("\n");
+            for (let skillCount = 0; skillCount < skillSplit.length; skillCount++) {
+                generatedMessage.value += (skillCount + 1) + ". " + skillSplit[skillCount] + "\n";
+            }
+            generatedMessage.value += "```";
+
+            generatedMessage.select();
+            generatedMessage.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+        };
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Legatus</a>
+    <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarColor02" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="SotW.html">SotW<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="card col-sm-6 mx-auto mt-4">
+    <h2 class="mx-auto mt-2">Skill of the Week</h2>
+    <div class="card-body">
+        <form>
+            <div class="form-group">
+                <label for="inputSkills">Skills</label>
+                <textarea aria-describedby="skillHelp" class="form-control" id="inputSkills"
+                          placeholder="Enter skill list"
+                          rows="3"></textarea>
+                <small class="form-text text-muted" id="skillHelp">A list of the skills to be voted on.</small>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="col-form-label" for="startDateInput">Start Date</label>
+                        <input aria-describedby="startHelp" class="form-control" id="startDateInput" type="date"
+                               value="PLACEHOLDER">
+                        <small class="form-text text-muted" id="startHelp">The date to start the voting.</small>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="col-form-label" for="startTimeInput">Start Time</label>
+                        <input aria-describedby="startTimeHelp" class="form-control" id="startTimeInput" type="time"
+                               value="PLACEHOLDER">
+                        <small class="form-text text-muted" id="startTimeHelp">The time to start the voting.</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="col-form-label" for="endDateInput">End Date & Time</label>
+                        <input aria-describedby="endHelp" class="form-control" id="endDateInput" type="date"
+                               value="PLACEHOLDER">
+                        <small class="form-text text-muted" id="endHelp">The date to end the voting.</small>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="col-form-label" for="endTimeInput">End Time</label>
+                        <input aria-describedby="endTimeHelp" class="form-control" id="endTimeInput" type="time"
+                               value="PLACEHOLDER">
+                        <small class="form-text text-muted" id="endTimeHelp">The time to end the voting.</small>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button class="btn btn-outline-success btn-lg btn-block" onclick="generateMessage()" type="button">Generate
+            Message
+        </button>
+        <form>
+            <div class="form-group">
+                <h4 class="mx-auto mt-4">Generated Message</h4>
+                <textarea class="form-control" id="generatedMessage"
+                          placeholder="Output message for discord"
+                          readonly rows="3"></textarea>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
