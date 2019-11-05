@@ -19,15 +19,15 @@
             const generatedMessage = document.getElementById("preEventGeneratedMessage");
             generatedMessage.value = '';
 
-            const splitStart = (document.getElementById("startDateInput").value).split("-");
+            const splitStart = (document.getElementById("preEventStartDateInput").value).split("-");
             const startDate = splitStart[1] + "/" + splitStart[2];
-            const splitEnd = (document.getElementById("endDateInput").value).split("-");
+            const splitEnd = (document.getElementById("preEventEndDateInput").value).split("-");
             const endDate = splitEnd[1] + "/" + splitEnd[2];
-            const startTime = document.getElementById("startTimeInput").value;
-            const endTime = document.getElementById("endTimeInput").value;
+            const startTime = document.getElementById("preEventStartTimeInput").value;
+            const endTime = document.getElementById("preEventEndTimeInput").value;
 
             generatedMessage.enabled = true;
-            generatedMessage.value += "Please vote for your favorite skills for the week of ";
+            generatedMessage.value += "@everyone [Skill of the Week] \n Please vote for your favorite skills for the week of ";
             generatedMessage.value += startDate + " - " + endDate + " skilling event! ";
             generatedMessage.value += "The event will start on " + startDate + " at " + startTime + " EST ";
             generatedMessage.value += "and end at " + endDate + " at " + endTime + " EST. ";
@@ -38,7 +38,7 @@
                 "Voting will close when the event starts.";
 
             generatedMessage.value += "\n```\n";
-            const skillSplit = document.getElementById("inputSkills").value.trim().split("\n");
+            const skillSplit = document.getElementById("preEventInputSkills").value.trim().split("\n");
             for (let skillCount = 0; skillCount < skillSplit.length; skillCount++) {
                 generatedMessage.value += (skillCount + 1) + ". " + skillSplit[skillCount] + "\n";
             }
@@ -48,6 +48,81 @@
             generatedMessage.setSelectionRange(0, 99999);
             document.execCommand("copy");
         };
+
+        const generateAfterVoting = function() {
+            const generatedMessage = document.getElementById("afterVotingGeneratedMessage");
+            generatedMessage.value = '';
+
+            const splitStart = (document.getElementById("afterVotingStartDateInput").value).split("-");
+            const startDate = splitStart[1] + "/" + splitStart[2];
+            const splitEnd = (document.getElementById("afterVotingEndDateInput").value).split("-");
+            const endDate = splitEnd[1] + "/" + splitEnd[2];
+            const startTime = document.getElementById("afterVotingStartTimeInput").value;
+            const endTime = document.getElementById("afterVotingEndTimeInput").value;
+
+            const skillName = document.getElementById("afterVotingSkillInput").value;
+            const competitionLink = document.getElementById("afterVotingCompetitionLinkInput").value;
+
+            generatedMessage.enabled = true;
+            generatedMessage.value += "@everyone [Skill of the Week] \n";
+            generatedMessage.value += skillName + " has been voted for the Skill of the Week for the week of ";
+            generatedMessage.value += startDate + " - " + endDate + "! ";
+            generatedMessage.value += "This event will run from " + startDate + " at " + startTime + " EST through ";
+            generatedMessage.value += endDate + " at " + endTime + " EST. Those who place in 1st, 2nd, or 3rd ";
+            generatedMessage.value += "by gaining the most " + skillName + " XP this week will receive 4m, 2.5m, ";
+            generatedMessage.value += "or 1m respectively! Best of luck to everyone!\n\n";
+
+            generatedMessage.value += "A link to the competition can be viewed here:\n";
+            generatedMessage.value += competitionLink + "\n";
+            generatedMessage.value += "(Note, if you do not see your name on the event list, please privately message me ASAP)\n";
+            generatedMessage.value += "Also, please verify that CML is tracking your XP before grinding the event out!";
+
+            generatedMessage.select();
+            generatedMessage.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+        };
+
+        const generatePostEvent = function() {
+            const generatedMessage = document.getElementById("postEventGeneratedMessage");
+            generatedMessage.value = '';
+
+            const splitStart = (document.getElementById("postEventStartDateInput").value).split("-");
+            const startDate = splitStart[1] + "/" + splitStart[2];
+            const splitEnd = (document.getElementById("postEventEndDateInput").value).split("-");
+            const endDate = splitEnd[1] + "/" + splitEnd[2];
+
+            const skillName = document.getElementById("postEventSkillInput").value;
+
+            const firstPlaceName = document.getElementById("postEventFirstPlace").value;
+            const firstPlaceXP = document.getElementById("postEventFirstPlaceXP").value;
+            const secondPlaceName = document.getElementById("postEventSecondPlace").value;
+            const secondPlaceXP = document.getElementById("postEventSecondPlaceXP").value;
+            const thirdPlaceName = document.getElementById("postEventThirdPlace").value;
+            const thirdPlaceXP = document.getElementById("postEventThirdPlaceXP").value;
+
+            const totalXP = +firstPlaceXP + +secondPlaceXP + +thirdPlaceXP;
+            document.getElementById("postEventTotalXP").value = totalXP;
+            const competitionLink = document.getElementById("postEventCompetitionLink").value;
+
+            generatedMessage.enabled = true;
+            generatedMessage.value += "@everyone [Skill of the Week] \n";
+            generatedMessage.value += "Hello everyone! The Skill of the Week (" + skillName + ") competition for the week of ";
+            generatedMessage.value += startDate + " - " + endDate + " is now over! The following members have earned ";
+            generatedMessage.value += "their places in top three:\n\n";
+
+            generatedMessage.value += "1. " + firstPlaceName + " - With " + firstPlaceXP + " XP, winning 4m\n";
+            generatedMessage.value += "2. " + secondPlaceName + " - With " + secondPlaceXP + " XP, winning 2.5m\n";
+            generatedMessage.value += "3. " + thirdPlaceName + " - With " + thirdPlaceXP + " XP, winning 1.5m\n";
+
+            generatedMessage.value += "\nIn total, the clan had gained over " + totalXP + " XP!\n\n";
+
+            generatedMessage.value += "Thank you to all that participated, congratulations to the top three, and best of luck to everyone in the next competition!\n";
+            generatedMessage.value += "You can see the results of the event here:\n" + competitionLink;
+
+            generatedMessage.select();
+            generatedMessage.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+        }
     </script>
 </head>
 <body>
@@ -93,8 +168,8 @@
                 <h2 class="mx-auto mt-2">Skill of the Week - Pre-Event</h2>
                 <form>
                     <div class="form-group">
-                        <label for="inputSkills">Skills</label>
-                        <textarea aria-describedby="skillHelp" class="form-control" id="inputSkills"
+                        <label for="preEventInputSkills">Skills</label>
+                        <textarea aria-describedby="skillHelp" class="form-control" id="preEventInputSkills"
                                   placeholder="Enter skill list"
                                   rows="3"></textarea>
                         <small class="form-text text-muted" id="skillHelp">A list of the skills to be voted on.</small>
@@ -165,44 +240,44 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="col-form-label" for="startDateInput">Start Date</label>
-                                <input aria-describedby="startHelp" class="form-control" id="startDateInput" type="date"
+                                <label class="col-form-label" for="afterVotingStartDateInput">Start Date</label>
+                                <input aria-describedby="afterVotingStartDateHelp" class="form-control" id="afterVotingStartDateInput" type="date"
                                        value="PLACEHOLDER">
-                                <small class="form-text text-muted" id="startHelp">The date to start the voting.</small>
+                                <small class="form-text text-muted" id="afterVotingStartDateHelp">The date to start the event.</small>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="col-form-label" for="startTimeInput">Start Time</label>
-                                <input aria-describedby="startTimeHelp" class="form-control" id="startTimeInput"
+                                <label class="col-form-label" for="afterVotingStartTimeInput">Start Time</label>
+                                <input aria-describedby="afterVotingStartTimeHelp" class="form-control" id="afterVotingStartTimeInput"
                                        type="time"
                                        value="PLACEHOLDER">
-                                <small class="form-text text-muted" id="startTimeHelp">The time to start the
-                                    voting.</small>
+                                <small class="form-text text-muted" id="afterVotingStartTimeHelp">The time to start the
+                                    event.</small>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="col-form-label" for="endDateInput">End Date & Time</label>
-                                <input aria-describedby="endHelp" class="form-control" id="endDateInput" type="date"
+                                <label class="col-form-label" for="afterVotingEndDateInput">End Date</label>
+                                <input aria-describedby="afterVotingEndDateHelp" class="form-control" id="afterVotingEndDateInput" type="date"
                                        value="PLACEHOLDER">
-                                <small class="form-text text-muted" id="endHelp">The date to end the voting.</small>
+                                <small class="form-text text-muted" id="afterVotingEndDateHelp">The date to end the event.</small>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="col-form-label" for="endTimeInput">End Time</label>
-                                <input aria-describedby="endTimeHelp" class="form-control" id="endTimeInput" type="time"
+                                <label class="col-form-label" for="afterVotingEndTimeInput">End Time</label>
+                                <input aria-describedby="afterVotingEndTimeHelp" class="form-control" id="afterVotingEndTimeInput" type="time"
                                        value="PLACEHOLDER">
-                                <small class="form-text text-muted" id="endTimeHelp">The time to end the voting.</small>
+                                <small class="form-text text-muted" id="afterVotingEndTimeHelp">The time to end the event.</small>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="afterVotingSkillInput">Skill</label>
-                        <input class="form-control" id="afterVotingSkillInput" placeholder="Link to the CML competition"
+                        <input class="form-control" id="afterVotingSkillInput" placeholder="Voted skill name"
                                type="text">
                     </div>
                     <div class="form-group">
@@ -227,7 +302,120 @@
             </div>
         </div>
         <div class="tab-pane fade" id="postEventPill" role="tabpanel">
+            <div class="card-body">
+                <h2 class="mx-auto mt-2">Skill of the Week - Post Event</h2>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="col-form-label" for="postEventStartDateInput">Start Date</label>
+                                <input aria-describedby="postEventStartDateHelp" class="form-control"
+                                       id="postEventStartDateInput" type="date"
+                                       value="PLACEHOLDER">
+                                <small class="form-text text-muted" id="postEventStartDateHelp">The date the event
+                                    started.</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="col-form-label" for="postEventEndDateInput">End Date</label>
+                                <input aria-describedby="postEventEndDateHelp" class="form-control" id="postEventEndDateInput"
+                                       type="date"
+                                       value="PLACEHOLDER">
+                                <small class="form-text text-muted" id="postEventEndDateHelp">The date the event ended.</small>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="postEventSkillInput">Skill</label>
+                        <input class="form-control" id="postEventSkillInput" placeholder="Voted skill name"
+                               type="text">
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="postEventFirstPlace">First Place Member</label>
+                                <input class="form-control" id="postEventFirstPlace"
+                                       placeholder="The first place member's name"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="postEventFirstPlaceXP">First Place Member's XP</label>
+                                <input class="form-control" id="postEventFirstPlaceXP"
+                                       placeholder="The first place member's XP"
+                                       type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="postEventSecondPlace">Second Place Member</label>
+                                <input class="form-control" id="postEventSecondPlace"
+                                       placeholder="The second place member's name"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="postEventSecondPlaceXP">Second Place Member's XP</label>
+                                <input class="form-control" id="postEventSecondPlaceXP"
+                                       placeholder="The second place member's XP"
+                                       type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="postEventThirdPlace">Third Place Member</label>
+                                <input class="form-control" id="postEventThirdPlace"
+                                       placeholder="The third place member's name"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="postEventThirdPlaceXP">Third Place Member's XP</label>
+                                <input class="form-control" id="postEventThirdPlaceXP"
+                                       placeholder="The third place member's XP"
+                                       type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postEventTotalXP">Total XP</label>
+                        <input class="form-control" id="postEventTotalXP" placeholder="0 XP"
+                               type="text" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postEventCompetitionLink">Crystal Math Lab Competition Link</label>
+                        <input class="form-control" id="postEventCompetitionLink"
+                               placeholder="Link to the finished CML competition"
+                               type="text">
+                    </div>
+                </form>
+                <button class="btn btn-outline-primary btn-lg btn-block" onclick="generatePostEvent()" type="button">
+                    Generate
+                    Message
+                </button>
+                <form>
+                    <div class="form-group">
+                        <h4 class="mx-auto mt-4">Generated Message</h4>
+                        <textarea class="form-control" id="postEventGeneratedMessage"
+                                  placeholder="Output message for discord"
+                                  readonly rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
