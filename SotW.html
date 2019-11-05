@@ -9,8 +9,8 @@
     <title>Legatus - SotW</title>
 
     <script>
-        const generateMessage = function () {
-            const generatedMessage = document.getElementById("generatedMessage");
+        const generatePreEvent = function () {
+            const generatedMessage = document.getElementById("preEventGeneratedMessage");
             generatedMessage.value = '';
 
             const splitStart = (document.getElementById("startDateInput").value).split("-");
@@ -65,64 +65,164 @@
 </nav>
 
 <div class="card col-sm-6 mx-auto mt-4">
-    <h2 class="mx-auto mt-2">Skill of the Week</h2>
-    <div class="card-body">
-        <form>
-            <div class="form-group">
-                <label for="inputSkills">Skills</label>
-                <textarea aria-describedby="skillHelp" class="form-control" id="inputSkills"
-                          placeholder="Enter skill list"
-                          rows="3"></textarea>
-                <small class="form-text text-muted" id="skillHelp">A list of the skills to be voted on.</small>
-            </div>
-            <div class="row">
-                <div class="col">
+    <ul class="nav nav-pills nav-fill mt-4" role="tablist">
+        <li class="nav-item">
+            <a aria-controls="preEventPill" aria-selected="true" class="nav-link active" data-toggle="pill"
+               href="#preEventPill" role="tab">Pre-Event</a>
+        </li>
+        <li class="nav-item">
+            <a aria-controls="afterVotingPill" aria-selected="false" class="nav-link" data-toggle="pill"
+               href="#afterVotingPill" role="tab">After
+                Voting</a>
+        </li>
+        <li class="nav-item">
+            <a aria-controls="postEventPill" aria-selected="false" class="nav-link" data-toggle="pill"
+               href="#postEventPill" role="tab">Post-Event</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="tabContent">
+        <div class="tab-pane fade show active" id="preEventPill" role="tabpanel">
+            <div class="card-body">
+                <h2 class="mx-auto mt-2">Skill of the Week - Pre-Event</h2>
+                <form>
                     <div class="form-group">
-                        <label class="col-form-label" for="startDateInput">Start Date</label>
-                        <input aria-describedby="startHelp" class="form-control" id="startDateInput" type="date"
-                               value="PLACEHOLDER">
-                        <small class="form-text text-muted" id="startHelp">The date to start the voting.</small>
+                        <label for="inputSkills">Skills</label>
+                        <textarea aria-describedby="skillHelp" class="form-control" id="inputSkills"
+                                  placeholder="Enter skill list"
+                                  rows="3"></textarea>
+                        <small class="form-text text-muted" id="skillHelp">A list of the skills to be voted on.</small>
                     </div>
-                </div>
-                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="col-form-label" for="preEventStartDateInput">Start Date</label>
+                                <input aria-describedby="preEventStartHelp" class="form-control"
+                                       id="preEventStartDateInput" type="date"
+                                       value="PLACEHOLDER">
+                                <small class="form-text text-muted" id="preEventStartHelp">The date to start the
+                                    voting.</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="col-form-label" for="preEventStartTimeInput">Start Time</label>
+                                <input aria-describedby="preEventStartTimeHelp" class="form-control"
+                                       id="preEventStartTimeInput" type="time"
+                                       value="PLACEHOLDER">
+                                <small class="form-text text-muted" id="preEventStartTimeHelp">The time to start the
+                                    voting.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="col-form-label" for="preEventEndDateInput">End Date & Time</label>
+                                <input aria-describedby="preEventEndHelp" class="form-control" id="preEventEndDateInput"
+                                       type="date"
+                                       value="PLACEHOLDER">
+                                <small class="form-text text-muted" id="preEventEndHelp">The date to end the
+                                    voting.</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="col-form-label" for="preEventEndTimeInput">End Time</label>
+                                <input aria-describedby="preEventEndTimeHelp" class="form-control"
+                                       id="preEventEndTimeInput" type="time"
+                                       value="PLACEHOLDER">
+                                <small class="form-text text-muted" id="preEventEndTimeHelp">The time to end the
+                                    voting.</small>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <button class="btn btn-outline-primary btn-lg btn-block" onclick="generatePreEvent()" type="button">
+                    Generate
+                    Message
+                </button>
+                <form>
                     <div class="form-group">
-                        <label class="col-form-label" for="startTimeInput">Start Time</label>
-                        <input aria-describedby="startTimeHelp" class="form-control" id="startTimeInput" type="time"
-                               value="PLACEHOLDER">
-                        <small class="form-text text-muted" id="startTimeHelp">The time to start the voting.</small>
+                        <h4 class="mx-auto mt-4">Generated Message</h4>
+                        <textarea class="form-control" id="preEventGeneratedMessage"
+                                  placeholder="Output message for discord"
+                                  readonly rows="3"></textarea>
                     </div>
-                </div>
+                </form>
             </div>
-            <div class="row">
-                <div class="col">
+        </div>
+        <div class="tab-pane fade" id="afterVotingPill" role="tabpanel">
+            <div class="card-body">
+                <h2 class="mx-auto mt-2">Skill of the Week - After Voting</h2>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="col-form-label" for="startDateInput">Start Date</label>
+                                <input aria-describedby="startHelp" class="form-control" id="startDateInput" type="date"
+                                       value="PLACEHOLDER">
+                                <small class="form-text text-muted" id="startHelp">The date to start the voting.</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="col-form-label" for="startTimeInput">Start Time</label>
+                                <input aria-describedby="startTimeHelp" class="form-control" id="startTimeInput"
+                                       type="time"
+                                       value="PLACEHOLDER">
+                                <small class="form-text text-muted" id="startTimeHelp">The time to start the
+                                    voting.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="col-form-label" for="endDateInput">End Date & Time</label>
+                                <input aria-describedby="endHelp" class="form-control" id="endDateInput" type="date"
+                                       value="PLACEHOLDER">
+                                <small class="form-text text-muted" id="endHelp">The date to end the voting.</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="col-form-label" for="endTimeInput">End Time</label>
+                                <input aria-describedby="endTimeHelp" class="form-control" id="endTimeInput" type="time"
+                                       value="PLACEHOLDER">
+                                <small class="form-text text-muted" id="endTimeHelp">The time to end the voting.</small>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label class="col-form-label" for="endDateInput">End Date & Time</label>
-                        <input aria-describedby="endHelp" class="form-control" id="endDateInput" type="date"
-                               value="PLACEHOLDER">
-                        <small class="form-text text-muted" id="endHelp">The date to end the voting.</small>
+                        <label for="afterVotingSkillInput">Skill</label>
+                        <input class="form-control" id="afterVotingSkillInput" placeholder="Link to the CML competition"
+                               type="text">
                     </div>
-                </div>
-                <div class="col">
                     <div class="form-group">
-                        <label class="col-form-label" for="endTimeInput">End Time</label>
-                        <input aria-describedby="endTimeHelp" class="form-control" id="endTimeInput" type="time"
-                               value="PLACEHOLDER">
-                        <small class="form-text text-muted" id="endTimeHelp">The time to end the voting.</small>
+                        <label for="afterVotingCompetitionLinkInput">Crystal Math Lab Competition Link</label>
+                        <input class="form-control" id="afterVotingCompetitionLinkInput"
+                               placeholder="Link to the CML competition"
+                               type="text">
                     </div>
-                </div>
+                </form>
+                <button class="btn btn-outline-primary btn-lg btn-block" onclick="generateAfterVoting()" type="button">
+                    Generate
+                    Message
+                </button>
+                <form>
+                    <div class="form-group">
+                        <h4 class="mx-auto mt-4">Generated Message</h4>
+                        <textarea class="form-control" id="afterVotingGeneratedMessage"
+                                  placeholder="Output message for discord"
+                                  readonly rows="3"></textarea>
+                    </div>
+                </form>
             </div>
-        </form>
-        <button class="btn btn-outline-success btn-lg btn-block" onclick="generateMessage()" type="button">Generate
-            Message
-        </button>
-        <form>
-            <div class="form-group">
-                <h4 class="mx-auto mt-4">Generated Message</h4>
-                <textarea class="form-control" id="generatedMessage"
-                          placeholder="Output message for discord"
-                          readonly rows="3"></textarea>
-            </div>
-        </form>
+        </div>
+        <div class="tab-pane fade" id="postEventPill" role="tabpanel">
+
+        </div>
     </div>
 </div>
 
