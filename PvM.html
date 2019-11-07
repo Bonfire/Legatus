@@ -35,9 +35,46 @@
                 generatedMessage.value += (bossCount + 1) + ". " + bossSplit[bossCount] + "\n";
             }
             generatedMessage.value += "```\n";
-
             generatedMessage.value += "You may vote on multiple bosses so don't just limit yourself to one!";
 
+            generatedMessage.select();
+            generatedMessage.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+        };
+
+        const generateAfterVoting = function () {
+            const generatedMessage = document.getElementById("afterVotingGeneratedMessage");
+            generatedMessage.value = '';
+
+            const bossName = document.getElementById("afterVotingBossName").value;
+            const bossLocation = document.getElementById("afterVotingBossLocation").value;
+            const bossDrops = document.getElementById("afterVotingBossDrops").value.trim().split("\n");
+
+            const splitStart = (document.getElementById("afterVotingEventStartDate").value).split("-");
+            const startDate = splitStart[1] + "/" + splitStart[2];
+            const eventLead = document.getElementById("afterVotingEventLead").value;
+            const meetupWorld = document.getElementById("afterVotingMeetupWorld").value;
+            const gearLinks = (document.getElementById("afterVotingGearLinks").value).split("-");
+
+            generatedMessage.value += "@everyone, a boss has been selected to be this weeks PvM target! Here is some information regarding the event:\n";
+            generatedMessage.value += "Boss Name: " + bossName + "\n";
+            generatedMessage.value += "Location: " + bossLocation + "\n";
+            generatedMessage.value += "Rare Drops: " + bossDrops.join(", ") + "\n\n";
+
+            generatedMessage.value += "Event Date: " + startDate + "\n";
+            generatedMessage.value += "Event Lead: " + eventLead + "\n";
+            generatedMessage.value += "Meetup World: " + meetupWorld + " (at the Event Lead's POH)\n\n";
+
+            generatedMessage.value += "Below are some links to gear we recommend you bring:\n";
+            generatedMessage.value += gearLinks.join("\n");
+
+            generatedMessage.value += "\n\nIf you need any additional help gearing or any other questions regarding the event PM ";
+            generatedMessage.value += eventLead + " ahead of time, they will help answer any questions or help you get a load out going! ";
+            generatedMessage.value += "We hope to see everyone out there, as always the PVM voice channel will be used for those who wish to chat with each other!";
+
+            generatedMessage.select();
+            generatedMessage.setSelectionRange(0, 99999);
+            document.execCommand("copy");
         }
     </script>
 </head>
@@ -112,6 +149,85 @@
                     <div class="form-group">
                         <h4 class="mx-auto mt-4">Generated Message</h4>
                         <textarea class="form-control" id="preEventGeneratedMessage"
+                                  placeholder="Output message for discord"
+                                  readonly rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="afterVotingPill" role="tabpanel">
+            <div class="card-body">
+                <h2 class="mx-auto mt-2">Skill of the Week - After Voting</h2>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="afterVotingBossName">Boss Name</label>
+                                <input class="form-control" id="afterVotingBossName"
+                                       placeholder="Voted boss' name"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="afterVotingBossLocation">Boss Location</label>
+                                <input class="form-control" id="afterVotingBossLocation"
+                                       placeholder="Voted boss' location"
+                                       type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="afterVotingBossDrops">Boss Drops</label>
+                        <textarea aria-describedby="bossDropsHelp" class="form-control" id="afterVotingBossDrops"
+                                  placeholder="Enter the boss' drops"
+                                  rows="3"></textarea>
+                        <small class="form-text text-muted" id="bossDropsHelp">A list of the rare drops the boss can
+                            drop.</small>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="afterVotingEventStartDate">Event Start Date</label>
+                        <input aria-describedby="afterVotingEventStartHelp" class="form-control"
+                               id="afterVotingEventStartDate" type="date"
+                               value="PLACEHOLDER">
+                        <small class="form-text text-muted" id="afterVotingEventStartHelp">The date the event
+                            starts.</small>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="afterVotingEventLead">Event Lead's Discord Name</label>
+                                <input class="form-control" id="afterVotingEventLead"
+                                       placeholder="Event lead's discord name"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="afterVotingMeetupWorld">Meetup World</label>
+                                <input class="form-control" id="afterVotingMeetupWorld"
+                                       placeholder="Meetup world"
+                                       type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="afterVotingGearLinks">Gear Images (Links)</label>
+                        <textarea aria-describedby="gearLinksHelp" class="form-control" id="afterVotingGearLinks"
+                                  placeholder="Links to gear for the boss"
+                                  rows="3"></textarea>
+                        <small class="form-text text-muted" id="gearLinksHelp">A list of links containing gear
+                            images.</small>
+                    </div>
+                </form>
+                <button class="btn btn-outline-primary btn-lg btn-block" onclick="generateAfterVoting()" type="button">
+                    Generate
+                    Message
+                </button>
+                <form>
+                    <div class="form-group">
+                        <h4 class="mx-auto mt-4">Generated Message</h4>
+                        <textarea class="form-control" id="afterVotingGeneratedMessage"
                                   placeholder="Output message for discord"
                                   readonly rows="3"></textarea>
                     </div>
