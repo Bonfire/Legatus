@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://bootswatch.com/4/darkly/bootstrap.css" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>Legatus - PvM</title>
+
+    <script>
+        const generatePreEvent = function () {
+            const generatedMessage = document.getElementById("preEventGeneratedMessage");
+            generatedMessage.value = '';
+
+            const splitEnd = (document.getElementById("preEventPollEndDate").value).split("-");
+            const endDate = splitEnd[1] + "/" + splitEnd[2];
+            const eventLead = document.getElementById("preEventLeadInput").value;
+
+            generatedMessage.value += "Hello @everyone, we would like to take a moment of your time to decide what the next clan PVM event shall be! Below will be a boss with a number next to it, choose the corresponding number under this post to vote on which boss you would like to fight!";
+            generatedMessage.value += "\n\n";
+            generatedMessage.value += "Event Lead: " + eventLead + "\n";
+            generatedMessage.value += "Poll End Date: " + endDate + "\n";
+
+            generatedMessage.value += "Lost Legion Hitlist:\n";
+            generatedMessage.value += "```\n";
+            const bossSplit = document.getElementById("preEventInputBosses").value.trim().split("\n");
+            for (let bossCount = 0; bossCount < bossSplit.length; bossCount++) {
+                generatedMessage.value += (bossCount + 1) + ". " + bossSplit[bossCount] + "\n";
+            }
+            generatedMessage.value += "```\n";
+
+            generatedMessage.value += "You may vote on multiple bosses so don't just limit yourself to one!";
+
+        }
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Legatus</a>
+    <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarColor02" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="SotW.html">SotW</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="PvM.html">PvM<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="card col-sm-6 mx-auto mt-4">
+    <ul class="nav nav-pills nav-fill mt-4" id="tabList" role="tablist">
+        <li class="nav-item">
+            <a aria-controls="preEventPill" aria-selected="true" class="nav-link active" data-toggle="pill"
+               href="#preEventPill" role="tab">Pre-Event</a>
+        </li>
+        <li class="nav-item">
+            <a aria-controls="afterVotingPill" aria-selected="false" class="nav-link" data-toggle="pill"
+               href="#afterVotingPill" role="tab">After
+                Voting</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="tabContent">
+        <div class="tab-pane fade show active" id="preEventPill" role="tabpanel">
+            <div class="card-body">
+                <h2 class="mx-auto mt-2">PvM - Pre-Event</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="preEventLeadInput">Event Lead</label>
+                        <input class="form-control" id="preEventLeadInput"
+                               placeholder="Event Lead's Discord Name"
+                               type="text">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="preEventPollEndDate">Poll End Date</label>
+                        <input aria-describedby="preEventPollEndDateHelp" class="form-control"
+                               id="preEventPollEndDate" type="date"
+                               value="PLACEHOLDER">
+                        <small class="form-text text-muted" id="preEventPollEndDateHelp">The date to end the
+                            poll.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="preEventInputBosses">Boss List</label>
+                        <textarea aria-describedby="bossHelp" class="form-control" id="preEventInputBosses"
+                                  placeholder="Enter boss list"
+                                  rows="3"></textarea>
+                        <small class="form-text text-muted" id="bossHelp">A list of the bosses to be voted on.</small>
+                    </div>
+                </form>
+                <button class="btn btn-outline-primary btn-lg btn-block" onclick="generatePreEvent()" type="button">
+                    Generate
+                    Message
+                </button>
+                <form>
+                    <div class="form-group">
+                        <h4 class="mx-auto mt-4">Generated Message</h4>
+                        <textarea class="form-control" id="preEventGeneratedMessage"
+                                  placeholder="Output message for discord"
+                                  readonly rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
