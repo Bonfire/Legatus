@@ -1,2 +1,2 @@
-# Legatus
-A handy Discord message creator for my OSRS clan
+## Legatus
+A handy discord message generator for my OSRS clan.
