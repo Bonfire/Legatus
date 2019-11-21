@@ -99,9 +99,8 @@
             const secondPlaceXP = document.getElementById("postEventSecondPlaceXP").value;
             const thirdPlaceName = document.getElementById("postEventThirdPlace").value;
             const thirdPlaceXP = document.getElementById("postEventThirdPlaceXP").value;
+            const totalXP = document.getElementById("postEventTotalXP").value;
 
-            const totalXP = +firstPlaceXP + +secondPlaceXP + +thirdPlaceXP;
-            document.getElementById("postEventTotalXP").value = totalXP;
             const competitionLink = document.getElementById("postEventCompetitionLink").value;
 
             generatedMessage.enabled = true;
@@ -396,7 +395,7 @@
                     <div class="form-group">
                         <label for="postEventTotalXP">Total XP</label>
                         <input class="form-control" id="postEventTotalXP" placeholder="0 XP"
-                               type="text" readonly>
+                               type="text">
                     </div>
 
                     <div class="form-group">
