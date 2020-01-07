@@ -99,6 +99,10 @@
             const secondPlaceXP = document.getElementById("postEventSecondPlaceXP").value;
             const thirdPlaceName = document.getElementById("postEventThirdPlace").value;
             const thirdPlaceXP = document.getElementById("postEventThirdPlaceXP").value;
+            const fourthPlaceName = document.getElementById("postEventFourthPlace").value;
+            const fourthPlaceXP = document.getElementById("postEventFourthPlaceXP").value;
+            const fifthPlaceName = document.getElementById("postEventFifthPlace").value;
+            const fifthPlaceXP = document.getElementById("postEventFifthPlaceXP").value;
             const totalXP = document.getElementById("postEventTotalXP").value;
 
             const competitionLink = document.getElementById("postEventCompetitionLink").value;
@@ -112,6 +116,8 @@
             generatedMessage.value += "1. @" + firstPlaceName + " - With " + firstPlaceXP + " XP, winning 4m\n";
             generatedMessage.value += "2. @" + secondPlaceName + " - With " + secondPlaceXP + " XP, winning 2.5m\n";
             generatedMessage.value += "3. @" + thirdPlaceName + " - With " + thirdPlaceXP + " XP, winning 1.5m\n";
+            generatedMessage.value += "4. @" + fourthPlaceName + " - With " + fourthPlaceXP + " XP, winning 15 PET points\n";
+            generatedMessage.value += "5. @" + fifthPlaceName + " - With " + fifthPlaceXP + " XP, winning 10 PET points\n";
 
             generatedMessage.value += "\nIn total, the clan had gained over " + totalXP + " XP!\n\n";
 
@@ -387,6 +393,44 @@
                                 <label for="postEventThirdPlaceXP">Third Place Member's XP</label>
                                 <input class="form-control" id="postEventThirdPlaceXP"
                                        placeholder="The third place member's XP"
+                                       type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="postEventFourthPlace">Fourth Place Member</label>
+                                <input class="form-control" id="postEventFourthPlace"
+                                       placeholder="The fourth place member's name"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="postEventFourthPlaceXP">Fourth Place Member's XP</label>
+                                <input class="form-control" id="postEventFourthPlaceXP"
+                                       placeholder="The fourth place member's XP"
+                                       type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="postEventFifthPlace">Fifth Place Member</label>
+                                <input class="form-control" id="postEventFifthPlace"
+                                       placeholder="The fifth place member's name"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="postEventFifthPlaceXP">Fifth Place Member's XP</label>
+                                <input class="form-control" id="postEventFifthPlaceXP"
+                                       placeholder="The fifth place member's XP"
                                        type="text">
                             </div>
                         </div>
