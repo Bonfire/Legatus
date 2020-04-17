@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://bootswatch.com/4/darkly/bootstrap.css" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>Legatus - Home</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Legatus</a>
+    <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarColor02" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="Commands.html">Commands<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="SotW.html">SotW</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="PvM.html">PvM</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<body>
+<div class="card col-sm-10 mx-auto mt-4">
+    <div class="card-body">
+        <h3 class="mx-auto mt-4 text-center">Legionary Bot - Utility Commands</h3>
+        <table class="table mx-auto">
+            <thead>
+            <tr>
+                <th scope="col" class="w-25">Command</th>
+                <th scope="col" class="w-25">Description</th>
+                <th scope="col" class="w-25">Examples</th>
+                <th scope="col" class="w-25">Permissions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">=help</th>
+                <td>Shows the help message</td>
+                <td>=help, =commands</td>
+                <td>Everyone</td>
+            </tr>
+            <tr>
+                <th scope="row">=reload</th>
+                <td>Reloads a command</td>
+                <td>=reload</td>
+                <td>Operator</td>
+            </tr>
+            </tbody>
+        </table>
+        <hr>
+        <h3 class="mx-auto mt-4 text-center">Legionary Bot - User Commands</h3>
+        <table class="table mx-auto">
+            <thead>
+            <tr>
+                <th scope="col" class="w-25">Command</th>
+                <th scope="col" class="w-25">Description</th>
+                <th scope="col" class="w-25">Examples</th>
+                <th scope="col" class="w-25">Permissions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">=agree</th>
+                <td>Agrees to the clan handbook</td>
+                <td>=agree @Bon#7654 CowKiller23</td>
+                <td>Non-Recruited Members</td>
+            </tr>
+            <tr>
+                <th scope="row">=recruit</th>
+                <td>Manually recruits a user</td>
+                <td>=recruit @Bon#7654</td>
+                <td>Captain, General, Leader</td>
+            </tr>
+            <tr>
+                <th scope="row">=promote</th>
+                <td>Manually promotes a user</td>
+                <td>=promote @Bon#7654</td>
+                <td>Captain, General, Leader</td>
+            </tr>
+            <tr>
+                <th scope="row">=kick</th>
+                <td>Manually kicks a user from the server</td>
+                <td>=kick @Bon#7654</td>
+                <td>Captain, General, Leader</td>
+            </tr>
+            <tr>
+                <th scope="row">=names</th>
+                <td>Fetches the name of all clan members</td>
+                <td>=names</td>
+                <td>Captain, General, Leader</td>
+            </tr>
+            <tr>
+                <th scope="row">=ranks</th>
+                <td>Fetches the ranks of all clan members</td>
+                <td>=ranks</td>
+                <td>Captain, General, Leader</td>
+            </tr>
+            </tbody>
+        </table>
+        <hr>
+        <h3 class="mx-auto mt-4 text-center">Legionary Bot - Lookup Commands</h3>
+        <table class="table mx-auto">
+            <thead>
+            <tr>
+                <th scope="col" class="w-25">Command</th>
+                <th scope="col" class="w-25">Description</th>
+                <th scope="col" class="w-25">Examples</th>
+                <th scope="col" class="w-25">Permissions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">=stats</th>
+                <td>Lookup the stats of a RSN</td>
+                <td>=stats Bonf</td>
+                <td>Everyone</td>
+            </tr>
+            <tr>
+                <th scope="row">=hcim</th>
+                <td>Lookup the status of a HCIM</td>
+                <td>=hcim Bonf</td>
+                <td>Everyone</td>
+            </tr>
+            <tr>
+                <th scope="row">=price</th>
+                <td>Lookup the price of an item</td>
+                <td>=price Armadyl Godsword</td>
+                <td>Everyone</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
