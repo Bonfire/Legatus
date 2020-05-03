@@ -34,7 +34,7 @@
             generatedMessage.value += "To vote for a skill, simply use one of the reactions below that correspond to " +
                 "that particular choice. **You're welcome to vote for more than one skill.** Whichever skill is most voted " +
                 "for by event start time will become the Skill of the Week. Those who earn the most XP in the selected " +
-                "skill by the end of the event will earn 1.5m for 3rd place, 2.5m for 2nd place, and 4m for 1st place. " +
+                "skill by the end of the event will earn 4m for 1st place, 3m for 2nd place, 2m for 3rd place, and 1m if they are chosen during the raffle. " +
                 "Voting will close when the event starts.";
 
             generatedMessage.value += "\n```\n";
@@ -69,8 +69,8 @@
             generatedMessage.value += startDate + " - " + endDate + "! ";
             generatedMessage.value += "This event will run from " + startDate + " at " + startTime + " EST through ";
             generatedMessage.value += endDate + " at " + endTime + " EST. Those who place in 1st, 2nd, or 3rd ";
-            generatedMessage.value += "by gaining the most " + skillName + " XP this week will receive 4m, 2.5m, ";
-            generatedMessage.value += "or 1m respectively! Best of luck to everyone!\n\n";
+            generatedMessage.value += "by gaining the most " + skillName + " XP this week will receive 4m, 3m, 2m, or 1m";
+            generatedMessage.value += " respectively! Best of luck to everyone!\n\n";
 
             generatedMessage.value += "A link to the competition can be viewed here:\n";
             generatedMessage.value += competitionLink + "\n";
@@ -99,10 +99,7 @@
             const secondPlaceXP = document.getElementById("postEventSecondPlaceXP").value;
             const thirdPlaceName = document.getElementById("postEventThirdPlace").value;
             const thirdPlaceXP = document.getElementById("postEventThirdPlaceXP").value;
-            const fourthPlaceName = document.getElementById("postEventFourthPlace").value;
-            const fourthPlaceXP = document.getElementById("postEventFourthPlaceXP").value;
-            const fifthPlaceName = document.getElementById("postEventFifthPlace").value;
-            const fifthPlaceXP = document.getElementById("postEventFifthPlaceXP").value;
+            const raffleWinnerName = document.getElementById("postEventRaffleWinner").value;
             const totalXP = document.getElementById("postEventTotalXP").value;
 
             const competitionLink = document.getElementById("postEventCompetitionLink").value;
@@ -113,15 +110,14 @@
             generatedMessage.value += startDate + " - " + endDate + " is now over! The following members have earned ";
             generatedMessage.value += "their places in top three:\n\n";
 
-            generatedMessage.value += "1. @" + firstPlaceName + " - With " + firstPlaceXP + " XP, winning 4m\n";
-            generatedMessage.value += "2. @" + secondPlaceName + " - With " + secondPlaceXP + " XP, winning 2.5m\n";
-            generatedMessage.value += "3. @" + thirdPlaceName + " - With " + thirdPlaceXP + " XP, winning 1.5m\n";
-            generatedMessage.value += "4. @" + fourthPlaceName + " - With " + fourthPlaceXP + " XP, winning 15 PET points\n";
-            generatedMessage.value += "5. @" + fifthPlaceName + " - With " + fifthPlaceXP + " XP, winning 10 PET points\n";
+            generatedMessage.value += "1. @" + firstPlaceName + " - With " + firstPlaceXP + " XP, winning 4m and 15 PET points!\n";
+            generatedMessage.value += "2. @" + secondPlaceName + " - With " + secondPlaceXP + " XP, winning 3m and 10 PET points!\n";
+            generatedMessage.value += "3. @" + thirdPlaceName + " - With " + thirdPlaceXP + " XP, winning 2m and 10 PET points!\n";
+            generatedMessage.value += "\nRaffle Winner: @" + raffleWinnerName + " winning 1m and 5 PET points!\n";
 
             generatedMessage.value += "\nIn total, the clan had gained over " + totalXP + " XP!\n\n";
 
-            generatedMessage.value += "Thank you to all that participated, congratulations to the top three, and best of luck to everyone in the next competition!\n";
+            generatedMessage.value += "Thank you to all that participated, congratulations to the top three and the raffle winner, and best of luck to everyone in the next competition!\n";
             generatedMessage.value += "You can see the results of the event here:\n" + competitionLink;
 
             generatedMessage.select();
@@ -404,36 +400,9 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="postEventFourthPlace">Fourth Place Member</label>
-                                <input class="form-control" id="postEventFourthPlace"
-                                       placeholder="The fourth place member's name"
-                                       type="text">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="postEventFourthPlaceXP">Fourth Place Member's XP</label>
-                                <input class="form-control" id="postEventFourthPlaceXP"
-                                       placeholder="The fourth place member's XP"
-                                       type="text">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="postEventFifthPlace">Fifth Place Member</label>
-                                <input class="form-control" id="postEventFifthPlace"
-                                       placeholder="The fifth place member's name"
-                                       type="text">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="postEventFifthPlaceXP">Fifth Place Member's XP</label>
-                                <input class="form-control" id="postEventFifthPlaceXP"
-                                       placeholder="The fifth place member's XP"
+                                <label for="postEventRaffleWinner">Raffle Winning Member</label>
+                                <input class="form-control" id="postEventRaffleWinner"
+                                       placeholder="The raffle winner's name"
                                        type="text">
                             </div>
                         </div>
